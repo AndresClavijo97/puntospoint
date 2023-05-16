@@ -12,9 +12,9 @@ class Api::BaseController < ApplicationController
 
   def authenticate_token!
     payload = Authentication::JsonWebToken.decode(auth_token)
-    @current_user = User.find(payload[:user_id])
+    @current_user = User.find(payload['user_id'])
   rescue JWT::ExpiredSignature
-    render json: { errors: ['Invalid auth token'] }, status: :unauthorized
+    render json: { errors: ['Expired auth token'] }, status: :unauthorized
   rescue JWT::DecodeError
     render json: { errors: ['Invalid auth token'] }, status: :unauthorized
   end
