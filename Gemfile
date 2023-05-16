@@ -67,3 +67,7 @@ gem 'bootstrap-email'
 
 # track changes over objects
 gem 'paper_trail', '~> 14.0'
+
+# authentication and authorization
+gem 'devise'
+gem 'jwt'
