@@ -1,8 +1,12 @@
 class Api::BaseController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
 
   before_action :set_default_format
   before_action :authenticate_token!
+
+  rescue_from ActiveRecord::NotFound do
+    render json: { errors: ['Records not found'] }, status: :unauthorized
+  end
 
   private
 

@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every :day do
-  runner 'Reports::SendDailyPurchases.call'
+every 1.minute do
+  rake 'reports:send_daily_purchases'
 end

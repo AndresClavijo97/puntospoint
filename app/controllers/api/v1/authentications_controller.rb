@@ -1,8 +1,8 @@
-class Api::V1::AuthenticationController < Api::BaseController
+class Api::V1::AuthenticationsController < Api::BaseController
   skip_before_action :authenticate_token!
 
   def create
-    user = User.find_by(email: authentication_params[:email])
+    user = User.find_by!(email: authentication_params[:email])
     if user.valid_password? authentication_params[:password]
       render json: { token: Authentication::JsonWebToken.encode(user_id: user.id) }, status: :ok
     else
@@ -13,6 +13,6 @@ class Api::V1::AuthenticationController < Api::BaseController
   private
 
   def authentication_params
-    params.require(:user).permit(:email, :password)
+    params.require(:authentication).permit(:email, :password)
   end
 end

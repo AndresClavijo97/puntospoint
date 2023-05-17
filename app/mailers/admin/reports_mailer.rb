@@ -12,7 +12,7 @@ module Admin
     #
     def send_daily_purchases(options)
       @purchases = options[:purchases]
-      bootstrap_mail subject: 'test'
+      bootstrap_mail
     end
   end
 end
