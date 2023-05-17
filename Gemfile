@@ -53,8 +53,6 @@ group :development do
   gem 'letter_opener'
 end
 
-gem "letter_opener", group: :development
-
 # linter and offenses
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
