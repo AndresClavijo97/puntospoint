@@ -9,7 +9,7 @@ class Admin::NotificationMailer < ApplicationMailer
     @administrators = options[:administrators]
 
     bootstrap_mail(
-      to: creator.email,
+      to: @creator.email,
       cc: @administrators,
       subject: 'First purchase notification'
     )
