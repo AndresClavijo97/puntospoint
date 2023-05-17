@@ -61,6 +61,7 @@ gem 'rubocop-rspec'
 # to perform job daily and background proccess
 gem 'sidekiq', '~> 7.1'
 gem 'whenever', require: false
+gem 'redis'
 
 # for tempate mailing
 gem 'bootstrap-email'

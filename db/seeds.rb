@@ -49,7 +49,9 @@ clients = Client.all
 25.times do
   Purchase.create(
     client: clients.sample,
-    product: products.sample
+    product: products.sample,
+    quantity: rand(1..10),
+    skip_first_purchase_email: true
   )
 end
 
