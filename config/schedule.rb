@@ -5,7 +5,11 @@
 
 # Example:
 #
-# set :output, "/path/to/my/cron_log.log"
+output_path = "#{__dir__}/../log/cron_log.log"
+File.open output_path
+
+set :output, output_path
+# set :output, './log/cron_log.log'
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -19,6 +23,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minute do
-  rake 'reports:send_daily_purchases'
+every 1.day, at: '3:42 pm' do
+  runner 'Reports::SendDailyPurchases.call'
 end
