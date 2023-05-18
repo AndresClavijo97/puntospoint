@@ -15,10 +15,14 @@ class Purchase < ApplicationRecord
     creator = product.creator
     administrators = User.admin.where.not(id: creator.id).pluck(:email)
 
-    Admin::NotificationMailer.first_purchase(
-      creator: creator,
-      administrators: administrators
-    ).deliver_later
+    Purchase.transaction do
+      return unless first_purchase?
+
+      Admin::NotificationMailer.first_purchase(
+        creator: creator,
+        administrators: administrators
+      ).deliver_later
+    end
   end
 
   def calculate_total
