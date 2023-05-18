@@ -1,11 +1,17 @@
 class Api::BaseController < ApplicationController
-  # skip_before_action :verify_authenticity_token
+  # skip_authorize_resource only: %i[authenticate_token! auth_token]
 
   before_action :set_default_format
   before_action :authenticate_token!
 
-  rescue_from ActiveRecord::NotFound do
+  rescue_from ActiveRecord::RecordNotFound do
     render json: { errors: ['Records not found'] }, status: :unauthorized
+  end
+
+  rescue_from CanCan::AccessDenied do
+    respond_to do |format|
+      format.json { head :forbidden }
+    end
   end
 
   private
@@ -25,5 +31,9 @@ class Api::BaseController < ApplicationController
 
   def auth_token
     @auth_token ||= request.headers[:authorization].split.last
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(@current_user)
   end
 end

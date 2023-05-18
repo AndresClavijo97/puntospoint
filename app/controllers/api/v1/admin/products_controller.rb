@@ -1,4 +1,6 @@
-class Api::V1::Admin::ProductsController < ApplicationController
+class Api::V1::Admin::ProductsController < Api::BaseController
+  authorize_resource
+
   def most_purchased
     success, data = Products::MostPurchasedQuery.new.call
 

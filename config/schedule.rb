@@ -23,6 +23,6 @@ set :output, output_path
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, at: '3:42 pm' do
+every 1.day, at: '8:21 am' do
   runner 'Reports::SendDailyPurchases.call'
 end

@@ -1,6 +1,9 @@
-class Api::V1::Admin::PurchasesController < ApplicationController
+class Api::V1::Admin::PurchasesController < Api::BaseController
+  authorize_resource
+
   def search
-    success, data = V1::Purchases::SearchPurchases.new.call(search_params)
+    # debugger
+    success, data = Purchases::SearchPurchases.new(search_params).call
 
     if success
       render json: data[:purchases], status: :ok
@@ -10,7 +13,7 @@ class Api::V1::Admin::PurchasesController < ApplicationController
   end
 
   def granularity
-    success, data = V1::Purchases::GroupAndCountByGranularity.new.call(search_params)
+    success, data = Purchases::GroupAndCountByGranularity.new(search_params).call
 
     if success
       render json: data[:purchases], status: :ok

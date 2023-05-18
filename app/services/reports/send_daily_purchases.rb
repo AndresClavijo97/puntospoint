@@ -5,8 +5,8 @@ module Reports
       yerterday = 1.day.ago
       starts_at = yerterday.at_beginning_of_day
       ends_at = yerterday.end_of_day
-      purchases = Purchase.where(created_at: starts_at..ends_at)
-      Admin::ReportsMailer.send_daily_purchases(purchases: purchases).deliver_now
+      purchases = Purchase.where(created_at: starts_at..ends_at).to_a
+      Admin::ReportsMailer.send_daily_purchases(purchases: purchases).deliver_later
 
       [true, { message: 'Proccess executed successfully' }]
     rescue StandardError

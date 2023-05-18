@@ -6,12 +6,28 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-10.times do
+User.create(
+  role: User.roles[:admin],
+  full_name: Faker::Name.name,
+  email: 'admin@example.com',
+  password: '12345678'
+)
+
+5.times do
   User.create(
     role: User.roles[:admin],
     full_name: Faker::Name.name,
     email: Faker::Internet.email,
-    password: '12345687'
+    password: '12345678'
+  )
+end
+
+10.times do
+  User.create(
+    role: User.roles[:basic],
+    full_name: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: '12345678'
   )
 
   Client.create(

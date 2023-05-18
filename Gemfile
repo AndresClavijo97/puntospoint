@@ -72,3 +72,4 @@ gem 'paper_trail', '~> 14.0'
 # authentication and authorization
 gem 'devise'
 gem 'jwt'
+gem 'cancancan'

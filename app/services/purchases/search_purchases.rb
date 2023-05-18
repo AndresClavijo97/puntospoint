@@ -4,7 +4,7 @@ module Purchases
 
     def initialize(params)
       @params = params
-      @purchases = Purchase.includes(:product)
+      @purchases = Purchase.includes(product: :categories)
     end
 
     def call
@@ -37,7 +37,7 @@ module Purchases
     end
 
     def filter_by_category
-      @purchases = @purchases.where(category_id: form.category_id)
+      @purchases = @purchases.where(product: { categories_products: { category_id: form.category_id }})
     end
 
     def filter_by_client
@@ -45,7 +45,7 @@ module Purchases
     end
 
     def filter_by_admin
-      @purchases = @purchases.joins(:product).where(products: { creator_id: form.user_id })
+      @purchases = @purchases.joins(:product).where(product: { creator_id: form.user_id })
     end
 
     def form
