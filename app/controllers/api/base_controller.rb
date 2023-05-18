@@ -1,6 +1,4 @@
 class Api::BaseController < ApplicationController
-  # skip_authorize_resource only: %i[authenticate_token! auth_token]
-
   before_action :set_default_format
   before_action :authenticate_token!
 
@@ -8,10 +6,8 @@ class Api::BaseController < ApplicationController
     render json: { errors: ['Records not found'] }, status: :unauthorized
   end
 
-  rescue_from CanCan::AccessDenied do
-    respond_to do |format|
-      format.json { head :forbidden }
-    end
+  rescue_from CanCan::AccessDenied do |exception|
+    render json: { errors: [exception.message] }, status: :unauthorized
   end
 
   private
