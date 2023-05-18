@@ -8,6 +8,7 @@ module Purchases
     end
 
     def call
+      validate_params
       filter_by_dates if dates_present?
       filter_by_category if form.category_id.present?
       filter_by_client if form.client_id.present?
@@ -15,7 +16,7 @@ module Purchases
 
       [true, { purchases: @purchases, message: 'Proccess executed successfully' }]
     rescue MissingParamsError => e
-      [false, { message: e.message }]
+      [false, { purchases: @purchases, message: e.message }]
     rescue StandardError
       # TODO: move all ocurrencies to i18n
       [false, { message: 'If a problem has occurred, report it to support' }]

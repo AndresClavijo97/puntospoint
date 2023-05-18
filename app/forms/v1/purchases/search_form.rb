@@ -6,6 +6,7 @@ module V1
       attribute :user_id
       attribute :client_id
       attribute :category_id
+      attribute :granularity, type: String
     end
   end
 end

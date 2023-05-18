@@ -9,9 +9,19 @@ class Api::V1::Admin::PurchasesController < ApplicationController
     end
   end
 
+  def granularity
+    success, data = V1::Purchases::GroupAndCountByGranularity.new.call(search_params)
+
+    if success
+      render json: data[:purchases], status: :ok
+    else
+      render json: { errors: data[:message] }, status: :internal_server_error
+    end
+  end
+
   private
 
   def search_params
-    params.require(:form).permit(:category_id, :user_id, :from_date, :to_date)
+    params.require(:form).permit(:category_id, :user_id, :from_date, :to_date, :granularity)
   end
 end
