@@ -1,4 +1,5 @@
 module Products
+  # Products::MostPurchasedQuery
   class MostPurchasedQuery
     def call
       categories = Category.includes(:purchases)
