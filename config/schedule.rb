@@ -8,6 +8,7 @@
 output_path = "#{__dir__}/../log/cron_log.log"
 File.open output_path
 
+env :PATH, ENV['PATH']
 set :output, output_path
 # set :output, './log/cron_log.log'
 #
@@ -23,6 +24,6 @@ set :output, output_path
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, at: '8:21 am' do
-  runner 'Reports::SendDailyPurchases.call'
+every 1.day do
+  runner 'Reports::SendDailyPurchases.new.call'
 end

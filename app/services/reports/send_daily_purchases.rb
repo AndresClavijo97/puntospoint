@@ -1,7 +1,7 @@
 module Reports
   # this service send a daily report with all purchases from yesterday
   class SendDailyPurchases
-    def self.call
+    def call
       yerterday = 1.day.ago
       starts_at = yerterday.at_beginning_of_day
       ends_at = yerterday.end_of_day
