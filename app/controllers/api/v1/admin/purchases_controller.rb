@@ -1,6 +1,6 @@
 class Api::V1::Admin::PurchasesController < ApplicationController
   def search
-    success, data = V1::Purchases::SearchPurchase.new.call(search_params)
+    success, data = V1::Purchases::SearchPurchases.new.call(search_params)
 
     if success
       render json: data[:purchases], status: :ok

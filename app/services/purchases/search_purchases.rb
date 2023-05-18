@@ -1,5 +1,5 @@
 module Purchases
-  class SearchPurchase
+  class SearchPurchases
     class MissingParamsError < StandardError; end
 
     def initialize(params)
