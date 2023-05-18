@@ -21,10 +21,10 @@
   )
 end
 
-10.times do
+20.times do
   Category.create(
     creator: User.admin.sample,
-    name: Faker::Lorem.word.capitalize,
+    name: Faker::Lorem.unique.word.capitalize,
     description: Faker::Lorem.paragraph
   )
 end
@@ -32,7 +32,7 @@ end
 categories = Category.all
 image_path = Rails.root.join('db/resources/images/product.svg')
 
-10.times do
+20.times do
   product = Product.create(
     creator: User.admin.sample,
     name: Faker::Commerce.unique.product_name,
@@ -46,7 +46,7 @@ end
 products = Product.all
 clients = Client.all
 
-25.times do
+100.times do
   Purchase.create(
     client: clients.sample,
     product: products.sample,

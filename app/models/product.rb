@@ -5,4 +5,6 @@ class Product < ApplicationRecord
 
   has_many_attached :images
   has_paper_trail
+
+  validates :name, uniqueness: true
 end
