@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Configure and start the server
 
-Things you may want to cover:
+``mv config/database.yml.example config/database.yml``
+
+``rails db:create && rails db:migrate && rails db:seed``
+
+``bundle exec whenever --update-crontab --set environment='development'``
+
+``bin/dev``
 
 * Ruby version
+  3.2.0
+* Rails version
+  7.0.4
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
